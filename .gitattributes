@@ -1,2 +1,6 @@
-. filter=lfs diff=lfs merge=lfs -text
-* filter=lfs diff=lfs merge=lfs -text
+*.unity merge=unityyamlmerge eol=lf
+*.prefab merge=unityyamlmerge eol=lf
+*.asset merge=unityyamlmerge eol=lf
+*.mat merge=unityyamlmerge eol=lf
+
+*.cs text eol=lf
