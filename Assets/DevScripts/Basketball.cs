@@ -8,7 +8,7 @@ public class Basketball : MonoBehaviour
 {
     [Header("Reset Settings")]
     public Transform spawnPoint;
-    public float outOfBoundsY = -5f;
+    public float outOfBoundsY = -10f;
     public float resetDelayAfterOutOfBounds = 1.0f;
 
     [Header("Miss Detection")]

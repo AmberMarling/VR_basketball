@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [Header("Score")]
     public int score = 0;
     public int pointsPerBasket = 2;
-    public TMP_Text scoreText;
+    public TMP_Text[] scoreTexts;
 
     [Header("Ball")]
     public Basketball basketball;
@@ -81,9 +81,12 @@ public class GameManager : MonoBehaviour
 
     private void UpdateScoreUI()
     {
-        if (scoreText != null)
+        foreach (TMP_Text text in scoreTexts)
         {
-            scoreText.text = score.ToString();
+            if (text != null)
+            {
+                text.text = score.ToString();
+            }
         }
     }
 }
