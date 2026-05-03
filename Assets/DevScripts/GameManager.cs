@@ -1,22 +1,89 @@
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public float shotClockDuration = 24f;
+    [Header("Shot Clock")]
+    public float shotClockLength = 24f;
     public float currentShotClock;
+    public bool clockRunning = true;
 
-    void Start()
+    [Header("Score")]
+    public int score = 0;
+    public int pointsPerBasket = 2;
+    public TMP_Text scoreText;
+
+    [Header("Ball")]
+    public Basketball basketball;
+
+    private void Start()
     {
-        currentShotClock = shotClockDuration;
+        ResetShotClock();
+        UpdateScoreUI();
     }
 
-    void Update()
+    private void Update()
     {
+        if (!clockRunning)
+        {
+            return;
+        }
+
         currentShotClock -= Time.deltaTime;
 
-        if (currentShotClock < 0)
+        if (currentShotClock <= 0f)
         {
-            currentShotClock = 0;
+            currentShotClock = 0f;
+            ShotClockExpired();
+        }
+    }
+
+    public void ResetShotClock()
+    {
+        currentShotClock = shotClockLength;
+        clockRunning = true;
+    }
+
+    public void AddMadeBasket()
+    {
+        score += pointsPerBasket;
+        UpdateScoreUI();
+
+        ResetShotClock();
+
+        if (basketball != null)
+        {
+            basketball.ResetBallAfterDelay(1.0f);
+        }
+    }
+
+    public void RegisterMiss()
+    {
+        ResetShotClock();
+
+        if (basketball != null)
+        {
+            basketball.ResetBallAfterDelay(1.5f);
+        }
+    }
+
+    private void ShotClockExpired()
+    {
+        clockRunning = false;
+
+        if (basketball != null)
+        {
+            basketball.ResetBallAfterDelay(1.0f);
+        }
+
+        Invoke(nameof(ResetShotClock), 1.0f);
+    }
+
+    private void UpdateScoreUI()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = score.ToString();
         }
     }
 }
