@@ -9,12 +9,15 @@ public class ShotClockDisplay : MonoBehaviour
     void Update()
     {
         float value = gameManager.currentShotClock;
+        int score = gameManager.score;
 
         string time = Mathf.Ceil(value).ToString();
 
+        bool isScore = true;
         foreach (var t in shotClockTexts)
         {
-            t.text = time;
+            t.text = $"{(isScore?time:score)}";
+            isScore = !isScore;
         }
     }
 }
