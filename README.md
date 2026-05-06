@@ -42,3 +42,7 @@ The system is also designed with scalability and performance optimization in min
 This project aims to demonstrate the fundamentals of VR sports simulation using modern XR tools. It focuses on intuitive interaction, realistic motion, and scalable system architecture, making it suitable as both a prototype and a foundation for future development.
 
 More updates coming soon!
+
+## 📖 Free Unity External Assets/Prefabs
+- Marpa Studio Demo Scene and Prefabs by Mario Paradiso
+- 🏀 https://assetstore.unity.com/packages/3d/environments/basketball-stadium-environment-328984 
