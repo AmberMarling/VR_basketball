@@ -8,11 +8,11 @@ public class Basketball : MonoBehaviour
 {
     [Header("Reset Settings")]
     public Transform spawnPoint;
-    public float outOfBoundsY = -10f;
-    public float resetDelayAfterOutOfBounds = 1.0f;
+    //public float outOfBoundsY = -10f;
+    //public float resetDelayAfterOutOfBounds = 1.0f;
 
     [Header("Miss Detection")]
-    public float missDelayAfterFloorHit = 2.0f;
+    //public float missDelayAfterFloorHit = 2.0f;
     public string floorTag = "Floor";
 
     [Header("References")]
@@ -23,7 +23,7 @@ public class Basketball : MonoBehaviour
 
     private bool hasBeenThrown;
     private bool scoredThisShot;
-    private bool resetScheduled;
+    //private bool resetScheduled;
 
     private void Awake()
     {
@@ -45,17 +45,17 @@ public class Basketball : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < outOfBoundsY && !resetScheduled)
-        {
-            ResetBallAfterDelay(resetDelayAfterOutOfBounds);
-        }
+        // if (transform.position.y < outOfBoundsY && !resetScheduled)
+        // {
+        //     ResetBallAfterDelay(resetDelayAfterOutOfBounds);
+        // }
     }
 
     private void OnGrabbed(SelectEnterEventArgs args)
     {
         hasBeenThrown = false;
         scoredThisShot = false;
-        resetScheduled = false;
+        //resetScheduled = false;
 
         StopAllCoroutines();
     }
@@ -68,41 +68,41 @@ public class Basketball : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!hasBeenThrown || scoredThisShot || resetScheduled)
+        if (!hasBeenThrown || scoredThisShot)
         {
             return;
         }
 
         if (collision.gameObject.CompareTag(floorTag))
         {
-            StartCoroutine(MissAfterDelay());
+            //StartCoroutine(MissAfterDelay());
         }
     }
 
-    private IEnumerator MissAfterDelay()
-    {
-        resetScheduled = true;
+    // private IEnumerator MissAfterDelay()
+    // {
+    //     resetScheduled = true;
 
-        yield return new WaitForSeconds(missDelayAfterFloorHit);
+    //     yield return new WaitForSeconds(missDelayAfterFloorHit);
 
-        if (!scoredThisShot)
-        {
-            if (gameManager != null)
-            {
-                gameManager.RegisterMiss();
-            }
-            else
-            {
-                ResetBallNow();
-            }
-        }
-    }
+    //     if (!scoredThisShot)
+    //     {
+    //         if (gameManager != null)
+    //         {
+    //             gameManager.RegisterMiss();
+    //         }
+    //         else
+    //         {
+    //             ResetBallNow();
+    //         }
+    //     }
+    // }
 
     public void MarkScored()
     {
         scoredThisShot = true;
         hasBeenThrown = false;
-        resetScheduled = true;
+        //resetScheduled = true;
     }
 
     public bool CanScore()
@@ -115,27 +115,27 @@ public class Basketball : MonoBehaviour
         return rb;
     }
 
-    public void ResetBallAfterDelay(float delay)
-    {
-        if (!gameObject.activeInHierarchy)
-        {
-            return;
-        }
+    // public void ResetBallAfterDelay(float delay)
+    // {
+    //     if (!gameObject.activeInHierarchy)
+    //     {
+    //         return;
+    //     }
 
-        if (!resetScheduled)
-        {
-            StartCoroutine(ResetAfterDelay(delay));
-        }
-    }
+    //     if (!resetScheduled)
+    //     {
+    //         StartCoroutine(ResetAfterDelay(delay));
+    //     }
+    // }
 
-    private IEnumerator ResetAfterDelay(float delay)
-    {
-        resetScheduled = true;
+    // private IEnumerator ResetAfterDelay(float delay)
+    // {
+    //     resetScheduled = true;
 
-        yield return new WaitForSeconds(delay);
+    //     yield return new WaitForSeconds(delay);
 
-        ResetBallNow();
-    }
+    //     ResetBallNow();
+    // }
 
     public void ResetBallNow()
     {
@@ -143,7 +143,6 @@ public class Basketball : MonoBehaviour
 
         hasBeenThrown = false;
         scoredThisShot = false;
-        resetScheduled = false;
 
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
