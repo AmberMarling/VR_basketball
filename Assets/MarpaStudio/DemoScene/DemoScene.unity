@@ -353,6 +353,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: dcd0a66ec1b01c5438483d8603e8eacc, type: 3}
   m_PrefabInstance: {fileID: 2850223}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4261867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4261868}
+  - component: {fileID: 4261869}
+  m_Layer: 0
+  m_Name: BallRespawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4261868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4261867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4261869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4261867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7edae418b36c204db636a3e04181100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BallManualRespawn
+  basketball: {fileID: 462985168}
+  allowRightControllerB: 1
+  allowLeftControllerY: 1
 --- !u!1001 &4916773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3582,12 +3629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c1dc4386201c24299930e11ab6ef9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShotClockDisplay
-  gameManager: {fileID: 907693787}
-  shotClockTexts:
-  - {fileID: 1998910919}
-  - {fileID: 436220053}
-  - {fileID: 321653095}
-  - {fileID: 146062472}
 --- !u!1001 &63491077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13088,7 +13129,6 @@ Transform:
   - {fileID: 1594915690}
   - {fileID: 15315377}
   - {fileID: 462985165}
-  - {fileID: 992345136}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &239178454
@@ -23108,9 +23148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Basketball
   spawnPoint: {fileID: 15315377}
-  outOfBoundsY: -5
-  resetDelayAfterOutOfBounds: 1
-  missDelayAfterFloorHit: 2
   floorTag: Floor
   gameManager: {fileID: 907693787}
 --- !u!114 &462985169
@@ -43469,9 +43506,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04beba337f28524599b6a3336f86d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  shotClockLength: 24
-  currentShotClock: 0
-  clockRunning: 1
   score: 0
   pointsPerBasket: 2
   scoreTexts:
@@ -48033,118 +48067,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: dcd0a66ec1b01c5438483d8603e8eacc, type: 3}
   m_PrefabInstance: {fileID: 992249337}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &992345135
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 992345136}
-  - component: {fileID: 992345139}
-  - component: {fileID: 992345138}
-  - component: {fileID: 992345137}
-  m_Layer: 0
-  m_Name: OutOfBoundsZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &992345136
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992345135}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7, y: -4.22, z: 21.9}
-  m_LocalScale: {x: 13.3, y: 10, z: 25.9}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 238193122}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &992345137
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992345135}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &992345138
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992345135}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &992345139
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992345135}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &994442279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107846,3 +107768,4 @@ SceneRoots:
   - {fileID: 197625316}
   - {fileID: 641749690}
   - {fileID: 1573928956}
+  - {fileID: 4261868}

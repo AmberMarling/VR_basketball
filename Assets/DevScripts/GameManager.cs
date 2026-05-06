@@ -3,10 +3,10 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Shot Clock")]
-    public float shotClockLength = 24f;
-    public float currentShotClock;
-    public bool clockRunning = true;
+    //[Header("Shot Clock")]
+    //public float shotClockLength = 24f;
+    //public float currentShotClock;
+    //public bool clockRunning = true;
 
     [Header("Score")]
     public int score = 0;
@@ -18,66 +18,66 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ResetShotClock();
+        //ResetShotClock();
         UpdateScoreUI();
     }
 
     private void Update()
     {
-        if (!clockRunning)
-        {
-            return;
-        }
+        // if (!clockRunning)
+        // {
+        //     return;
+        // }
 
-        currentShotClock -= Time.deltaTime;
+        // currentShotClock -= Time.deltaTime;
 
-        if (currentShotClock <= 0f)
-        {
-            currentShotClock = 0f;
-            ShotClockExpired();
-        }
+        // if (currentShotClock <= 0f)
+        // {
+        //     currentShotClock = 0f;
+        //     ShotClockExpired();
+        // }
     }
 
-    public void ResetShotClock()
-    {
-        currentShotClock = shotClockLength;
-        clockRunning = true;
-    }
+    // public void ResetShotClock()
+    // {
+    //     currentShotClock = shotClockLength;
+    //     clockRunning = true;
+    // }
 
     public void AddMadeBasket()
     {
         score += pointsPerBasket;
         UpdateScoreUI();
 
-        ResetShotClock();
+        //ResetShotClock();
 
-        if (basketball != null)
-        {
-            basketball.ResetBallAfterDelay(1.0f);
-        }
+        // if (basketball != null)
+        // {
+        //     basketball.ResetBallAfterDelay(1.0f);
+        // }
     }
 
-    public void RegisterMiss()
-    {
-        ResetShotClock();
+    // public void RegisterMiss()
+    // {
+    //     ResetShotClock();
 
-        if (basketball != null)
-        {
-            basketball.ResetBallAfterDelay(1.5f);
-        }
-    }
+    //     if (basketball != null)
+    //     {
+    //         basketball.ResetBallAfterDelay(1.5f);
+    //     }
+    // }
 
-    private void ShotClockExpired()
-    {
-        clockRunning = false;
+    // private void ShotClockExpired()
+    // {
+    //     clockRunning = false;
 
-        if (basketball != null)
-        {
-            basketball.ResetBallAfterDelay(1.0f);
-        }
+    //     if (basketball != null)
+    //     {
+    //         basketball.ResetBallAfterDelay(1.0f);
+    //     }
 
-        Invoke(nameof(ResetShotClock), 1.0f);
-    }
+    //     Invoke(nameof(ResetShotClock), 1.0f);
+    // }
 
     private void UpdateScoreUI()
     {
